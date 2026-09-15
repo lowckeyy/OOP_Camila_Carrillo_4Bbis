@@ -1,0 +1,51 @@
+class User:
+    def __init__(self, usuario, email, password):
+        self.__usuario = usuario
+        self.__email = email
+        self.__password = password
+
+    def login(self, usuario, email, password):
+        return (
+            self.__usuario == usuario and
+            self.__email == email and
+            self.__password == password
+        )
+
+    def create_post(self, content):
+        return Post(self.__usuario, content)
+
+
+class Post:
+    def __init__(self, usuario, content):
+        self.__usuario = usuario
+        self.__content = content
+
+    def show_public(self):
+        print(f"Post de {self.__usuario}: {self.__content}")
+
+
+class Comentario:
+    def __init__(self, autor, texto, receiver=None):
+        self.__autor = autor
+        self.__texto = texto
+        self.__receiver = receiver
+
+    def mostrar_comentario(self):
+        print(f"  - {self.__autor}: {self.__texto}")
+
+
+class Mensaje:
+    def __init__(self, remitente, contenido):
+        self.__remitente = remitente
+        self.__contenido = contenido
+
+    def leer_mensaje(self):
+        return f"De {self.__remitente}: {self.__contenido}"
+
+
+# Uso de las clases
+user1 = User("lowstkey", "key@gmail.com", "123456789")
+user2 = User("keynofknway", "keiki@gmail.com", "987654321")
+
+post1 = user1.create_post("Hi everyone! This is my first post")
+post1.show_public()
